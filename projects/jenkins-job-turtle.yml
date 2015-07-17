@@ -1,0 +1,5 @@
+- project:
+    name: jenkins-job-turtle
+    jobs:
+      - '{name}'
+

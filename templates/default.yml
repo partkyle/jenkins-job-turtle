@@ -1,0 +1,20 @@
+- job-template:
+    name: '{name}'
+    node: docker
+    scm:
+      - git:
+          url: 'git@github.com:sendgrid/{name}'
+          skip-tag: true
+          submodule:
+            recursive: true
+          branches:
+            - origin/master
+    builders:
+      - shell: "./.jenkins"
+    triggers:
+      - pollscm: '* * * * *'
+    properties:
+      - github:
+          url: 'https://github.com/sendgrid/{name}'
+    wrappers:
+      - ansicolor

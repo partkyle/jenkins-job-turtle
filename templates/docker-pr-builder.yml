@@ -1,0 +1,26 @@
+- job-template:
+    name: '{name}-docker-pr-builder'
+    node: docker
+    scm:
+      - git:
+          url: 'git@github.com:sendgrid/{name}'
+          skip-tag: true
+          submodule:
+            recursive: true
+          refspec: '+refs/pull/*:refs/remotes/origin/pr/*'
+          branches:
+            - '${{sha1}}'
+    builders:
+      - shell: "./.jenkins-docker"
+    triggers:
+      - github-pull-request:
+          org-list:
+            - sendgrid
+          permit-all: true
+          cron: '* * * * *'
+      - pollscm: '* * * * *'
+    properties:
+      - github:
+          url: 'https://github.com/sendgrid/{name}'
+    wrappers:
+      - ansicolor

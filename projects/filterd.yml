@@ -1,0 +1,4 @@
+- project:
+    name: filterd
+    jobs:
+      - '{name}-docker'

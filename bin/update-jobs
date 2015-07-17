@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# run jenkins jobs 
+jenkins-jobs --conf config/config.ini update ./defaults:./templates:./projects

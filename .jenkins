@@ -1,0 +1,5 @@
+#!/bin/sh
+
+docker build -t jenkins-job-builder-turtle .
+
+docker run jenkins-job-builder-turtle
